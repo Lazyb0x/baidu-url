@@ -13,8 +13,12 @@ import org.springframework.stereotype.Component;
 @EnableAsync
 public class PostTask {
 
+    private final PostService postService;
+
     @Autowired
-    PostService postService;
+    public PostTask(PostService postService) {
+        this.postService = postService;
+    }
 
     @Async
     @Scheduled(cron = "0 */30 * * * *")

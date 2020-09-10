@@ -15,11 +15,15 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class PostService {
 
-    @Autowired
-    SubmitConfig submitConfig;
+    private final SubmitConfig submitConfig;
+
+    private final SitemapParseUtil sitemapParseUtil;
 
     @Autowired
-    SitemapParseUtil sitemapParseUtil;
+    public PostService(SubmitConfig submitConfig, SitemapParseUtil sitemapParseUtil) {
+        this.submitConfig = submitConfig;
+        this.sitemapParseUtil = sitemapParseUtil;
+    }
 
     final Logger log = LoggerFactory.getLogger(getClass());
 

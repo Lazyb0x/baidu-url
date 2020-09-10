@@ -17,6 +17,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+/**
+ * 站点地图转换工具
+ * 用于将 XML 格式的站点地图转换成对象
+ */
 @Component
 public class SitemapParseUtil {
 
@@ -44,8 +48,8 @@ public class SitemapParseUtil {
         }
 
         NodeList list = doc.getElementsByTagName("url");
-        for (int i=0; i<list.getLength(); i++) {
-            Element e = (Element)list.item(i);
+        for (int i = 0; i < list.getLength(); i++) {
+            Element e = (Element) list.item(i);
             String loc = getTextValue(e, "loc");
             String lastmod = getTextValue(e, "lastmod");
 
@@ -61,16 +65,16 @@ public class SitemapParseUtil {
 
     /**
      * 从元素节点里面找到对应标签名的值
-     * @param e 被找的元素
+     *
+     * @param e    被找的元素
      * @param name 被找的标签名
      * @return 标签的文本内容
      */
-    private String getTextValue(Element e, String name){
+    private String getTextValue(Element e, String name) {
         NodeList nodes = e.getElementsByTagName(name);
-        if (nodes.getLength()!=0){
+        if (nodes.getLength() != 0) {
             return nodes.item(0).getFirstChild().getNodeValue();
-        }
-        else {
+        } else {
             return "";
         }
     }
